@@ -1,0 +1,44 @@
+<%- include('./include/head') %>
+  <%- include('./include/header') %>
+  <main class="container">
+    <h3>Add Story</h3>
+    <form method="POST" class="col-s12">
+      <div class="row">
+        <div class="input-field">
+          <input type="text" name="title" id="title">
+          <label for="title"></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <select name="status" id="status">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+          <label for="status"></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <h5>Tell Us Your Story:</h5>
+          <textarea name="body" id="body"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <input type="submit" value="Save" class="btn">
+        <a href="/dashboard" class="btn orange">Cancel</a>
+      </div>
+    </form>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js" integrity="sha256-bEIQpI72w9NJuIVhTLFUF2/8uxl0u5800r8ddViuv+o=" crossorigin="anonymous"></script>
+  <script>
+    M.Sidenav.init(document.querySelector('.sidenav'))
+    M.FormSelect.init(document.querySelector('#status'))
+    CKEDITOR.replace('body', {
+      plugins: 'wysiwygarea, toolbar, basicstyles, link'
+    })
+  </script>
+  
+ </body>
+</html>

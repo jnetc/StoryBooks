@@ -1,0 +1,53 @@
+<%- include('./include/head') %>
+  <%- include('./include/header') %>
+  <%- include('./layout/add_btn') %> 
+  <main class="container">
+    <h6>Dashboard</h6>
+    <h3>Welcome <%= name %> </h3>
+    <p>Here are your stories</p>
+    <% if(stories.length > 0) { %> 
+      
+      <table class="striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% stories.forEach(story => { %>
+            <tr></tr>
+              <td>
+                <a href="/stories/edit/<%= story._id %>"><%= story.title %> </a>
+              </td>
+              <td><%= moment(story.createAt).format('DD MMMM YYYY, kk:mm:ss') %> </td>
+              <td class="dash-status"><%= story.status %> </td>
+              <td>
+                <a href="/stories/edit/<%= story._id %>" class="btn btn-float">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <form action="/stories/<%= story._id %> " method="POST" id="delete-form">
+                  <!-- input - меняем метод POST на DELETE из пакета methodOverride -->
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class="btn red">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    
+    <% } else { %>
+      <p>You have not created any stories</p>
+    <% } %> 
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    M.Sidenav.init(document.querySelector('.sidenav'))    
+  </script>
+ </body>
+</html>

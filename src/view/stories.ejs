@@ -1,0 +1,40 @@
+<%- include('./include/head') %>
+  <%- include('./include/header') %>
+  <%- include('./layout/add_btn') %> 
+  <main class="container">
+    <h1>Stories</h1>
+     <div class="row">
+       <% if (stories.length > 0) { %>
+        <% stories.forEach(story => { %>
+         <div class="col s12 m4">
+           <div class="card">
+             <div class="card-image">
+               <!-- Пользователь в цикле, авторизированый пользователь, ID расказа -->
+               <%- editIcon(story.user, user, story._id) %> 
+             </div>
+             <div class="card-content center-align">
+               <h5><%= story.title %></h5>
+               <div class="stories-body"><%- story.body %></div>
+               <br>
+               <div class="chip">
+                 <img src="<%= story.user.image %> " alt="">
+                 <a href="/stories/user/<%= story.user._id %>"><%= story.user.displayName %> </a>
+               </div>
+             </div>
+             <div class="card-action center-align">
+               <a href="/stories/<%= story._id %>" class="btn grey">Read More</a>
+             </div>
+           </div>
+         </div>
+        <% }) %>
+       <% } else { %>
+        <p>No stories to display</p>
+       <% } %> 
+     </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    M.Sidenav.init(document.querySelector('.sidenav'))    
+  </script>
+ </body>
+</html>
